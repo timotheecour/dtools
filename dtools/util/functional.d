@@ -2,39 +2,28 @@
  NOTES:
 
 support for syntax:
+auto a=named!fun.z(3).x(4)();
 
-auto ret2=named!fun.z(3).x(4)();
+while waiting for real named parameter syntax (if it comes): auto a=fun(z:3,x:4);
 
-while waiting for real named parameter syntax (if it comes): auto ret2=fun(1,z:3,x:4);
+also: auto s=callNamed!(fun,`z,x`)(3,4);
+given a function:
+auto fun(int x,int y=2,double z=0);
 
- also: auto s=callNamed!(fun,`x,y`)(10,20);
- given a function:
- auto fun(int x,int y=2,double z=z_val, string z2="asdf");
-
- Compile time errors will occur on duplicate param names, or ones that don't exist, or ones that are not optional and not provided (eg x, above)
+Compile time errors will occur on duplicate param names, or ones that don't exist, or ones that are not optional and not provided (eg x, above)
 won't work with function pointers / delegates, as ParameterDefaultValueTuple etc won't know of parameters
 
- TODO:
-
+TODO:
 support:
-auto ret2=named!fun.z(3).x(4)(10,12);
-
-
+auto a=named!fun.z(3).y(4)(10); //for calling auto a=fun(10,4,3);
+support templates
 efficiency of the named!fun syntax? is there any overhead?
-can we have a lazy version ? cf only evaluates everything at once at the end to be as efficient
-
-  unittests to test that certain things don't compile
- support templates
- maybe mixin or code generation with attributes to support:
- auto s=fun!`x,y`(10,20);
-
-
-
+unittests to test that certain things don't compile
 
 Authors: 
 Timothee Cour
 Jacob Carlborg for Proxy code idea in named!foo.b(3).a(5).call();
-later modified to: named!foo.b(3).a(5)();
+later simplified to: named!foo.b(3).a(5)();
 
  +/
 

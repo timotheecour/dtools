@@ -4,11 +4,12 @@ dtools
 Tools for D programming language
 
 Author: Timothee Cour
+Contributors: Jacob Carlborg
 
 Description:
 
 function calling with named parameters with syntax: 
-auto s=callNamed!(fun,`x,y`)(10,20);
+auto a=named!fun.z(3).x(4)();
 (much more to come later)
 
 
