@@ -1,4 +1,4 @@
-module util.log;
+module dtools.util.log;
 
 import std.string:format;
 
@@ -75,4 +75,5 @@ unittest{
 	int x=1;
 	double z=1.2;
 	assert(mixin("variables: x=$x, z=$z, sum=$(x+z)".parse) == "variables: x=1, z=1.2, sum=2.2");
+//	assert(mixin(q{x,z,x+z}.parse2) == "x=1, z=1.2, x+z=2.2"); //TODO
 }

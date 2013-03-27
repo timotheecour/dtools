@@ -36,5 +36,14 @@ Usage:
     
     #2 run unittests
     rdmd --main -unittest dtools/util/functional.d
+    rdmd --main -unittest dtools/util/log.d
 
+    #3 try out examples
+    rdmd -version=test1 dtools/examples/test1
+
+    #build build/d_funs
+    rdmd -version=is_main --build-only -odbuild/ dtools/util/d_funs
+
+    #mixin insight on a file:
+    ./build/d_funs dtools/examples/test2.d
 
