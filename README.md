@@ -49,7 +49,10 @@ Usage:
     ${dtools_D}build/d_funs ${dtools_D}dtools/examples/test2.d
 
     #monod plugin (experimental)
-    rdmd --build-only -g -version=simple -I${dtools_D} -of${dtools_D}build/ ${dtools_D}dtools/temp/monod_plugin_1 
-    ${dtools_D}build/monod_plugin_1 -index_begin=18 -index_end=30 -file=${dtools_D}dtools/temp/monod_plugin_1.d -operation=toUpper
+    rdmd --build-only -g -version=simple -I${dtools_D} -of${dtools_D}build/ ${dtools_D}dtools/temp/monod_plugin_1.d
+    ${dtools_D}build/monod_plugin_1 -index_begin=18 -index_end=200 -file=${dtools_D}dtools/temp/monod_plugin_1.d -operation=toUpper
+
+    #or all at the same time:
+    rdmd -g -version=simple -I${dtools_D} ${dtools_D}dtools/temp/monod_plugin_1.d -index_begin=18 -index_end=200 -file=${dtools_D}dtools/temp/monod_plugin_1.d -operation=toUpper
 
 
