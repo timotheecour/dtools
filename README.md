@@ -33,17 +33,23 @@ Usage:
     cd $base_D 
     git clone https://github.com/timotheecour/dtools.git 
     cd dtools 
+    export dtools_D=`pwd`/
     
     #2 run unittests
-    rdmd --main -unittest dtools/util/functional.d
-    rdmd --main -unittest dtools/util/log.d
+    rdmd --main -unittest ${dtools_D}dtools/util/functional.d
+    rdmd --main -unittest ${dtools_D}dtools/util/log.d
 
     #3 try out examples
-    rdmd -version=test1 dtools/examples/test1
+    rdmd -version=test1 ${dtools_D}dtools/examples/test1
 
     #build build/d_funs
-    rdmd -version=is_main --build-only -odbuild/ dtools/util/d_funs
+    rdmd -version=is_main --build-only -od${dtools_D}build/ ${dtools_D}dtools/util/d_funs
 
     #mixin insight on a file:
-    ./build/d_funs dtools/examples/test2.d
+    ${dtools_D}build/d_funs ${dtools_D}dtools/examples/test2.d
+
+    #monod plugin (experimental)
+    rdmd --build-only -g -version=simple -I${dtools_D} -of${dtools_D}build/ ${dtools_D}dtools/temp/monod_plugin_1 
+    ${dtools_D}build/monod_plugin_1 -index_begin=18 -index_end=30 -file=${dtools_D}dtools/temp/monod_plugin_1.d -operation=toUpper
+
 
