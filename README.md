@@ -48,7 +48,7 @@ Usage:
     #mixin insight on a file:
     ${dtools_D}build/d_funs ${dtools_D}dtools/examples/test2.d
 
-    #monod plugin (experimental)
+    #monod plugin (experimental)    
     rdmd --build-only -g -version=simple -I${dtools_D} -of${dtools_D}build/ ${dtools_D}dtools/temp/monod_plugin_1.d
     ${dtools_D}build/monod_plugin_1 -index_begin=18 -index_end=200 -file=${dtools_D}dtools/temp/monod_plugin_1.d -operation=toUpper
 
