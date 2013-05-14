@@ -134,7 +134,7 @@ auto findMatchingBracket(string left="(")(string a){
 
 unittest{
 	import std.stdio:writeln;
-	writeln(findMatchingBracket("asdf(sf)ff"));
-	writeln(findMatchingBracket("asdf((s(f)))ff"));
+	assert(findMatchingBracket("asdf(sf)ff")=="(sf)");
+	assert(findMatchingBracket("asdf((s(f)))ff")=="((s(f)))");
 }
 

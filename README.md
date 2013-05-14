@@ -21,6 +21,8 @@ Features:
   // calls templated constructor with explicit instantiation.
   ```
 
+3.  mixin insight on a file (experimental)
+
 3.  (much more to come later)
 
 
@@ -42,8 +44,7 @@ Usage:
     export dtools_D=`pwd`/
     
     #2 run unittests
-    rdmd --main -unittest ${dtools_D}dtools/util/functional.d
-    rdmd --main -unittest ${dtools_D}dtools/util/log.d
+    rdmd --main -unittest -I${dtools_D} ${dtools_D}dtools/util/_.d
 
     #3 try out examples
     rdmd -version=test1 ${dtools_D}dtools/examples/test1
