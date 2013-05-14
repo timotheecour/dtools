@@ -15,7 +15,13 @@ Features:
   auto a=named!fun.z(3).x(4)();
   ```
 
-2.  (much more to come later)
+2.  template constructor (partial) instantiation
+  ```d
+  auto a=make!(A,double)(1);
+  // calls templated constructor with explicit instantiation.
+  ```
+
+3.  (much more to come later)
 
 
 
