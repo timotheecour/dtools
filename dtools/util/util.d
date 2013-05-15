@@ -39,7 +39,6 @@ unittest{
 	assert(AddressOf(a) is null);
 	a = new A;
 	auto a2=a;
-	auto pa=AddressOf(a);
 	assert(AddressOf(a) == AddressOf(a2) );
 	B b;
 	assert(AddressOf(b) !is null);

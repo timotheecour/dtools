@@ -20,7 +20,13 @@ Features:
   auto a=make!(A,double)(1);
   // calls templated constructor with explicit instantiation.
   ```
-3.  Take address of a class/struct/anything reliably regardless of opCast defined in class
+3.  Take address of a class/struct/anything reliably regardless of opCast defined in class:
+  ```d
+  class A{}
+  A a;
+  auto a2=a;
+  assert(AddressOf(a) == AddressOf(a2) );
+  ```
 
 4.  mixin insight on a file (experimental)
 
