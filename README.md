@@ -20,10 +20,11 @@ Features:
   auto a=make!(A,double)(1);
   // calls templated constructor with explicit instantiation.
   ```
+3.  Take address of a class/struct/anything reliably regardless of opCast defined in class
 
-3.  mixin insight on a file (experimental)
+4.  mixin insight on a file (experimental)
 
-3.  (much more to come later)
+5.  (much more to come later)
 
 
 
