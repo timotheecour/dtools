@@ -9,28 +9,29 @@ Contributors: Jacob Carlborg
 
 Features:
 -------------
-1.  function calling with named parameters: 
+*  function calling with named parameters: 
   
   ```d
   auto a=named!fun.z(3).x(4)();
   ```
 
-2.  template constructor (partial) instantiation
+*  template constructor (partial) instantiation
   ```d
   auto a=make!(A,double)(1);
   // calls templated constructor with explicit instantiation.
   ```
-3.  Take address of a class/struct/anything reliably regardless of opCast defined in class:
+*  Take address of a class/struct/anything reliably regardless of opCast defined in class:
   ```d
   class A{}
   A a;
   auto a2=a;
   assert(AddressOf(a) == AddressOf(a2) );
   ```
+*  version of std.format.formattedRead that takes by ref instead of by pointer (more convenient)
 
-4.  mixin insight on a file (experimental)
+*  mixin insight on a file (experimental)
 
-5.  (much more to come later)
+*  (much more to come later)
 
 
 
@@ -51,7 +52,7 @@ Usage:
     export dtools_D=`pwd`/
     
     #2 run unittests
-    rdmd --main -unittest -I${dtools_D} ${dtools_D}dtools/util/_.d
+    rdmd --main -unittest -I${dtools_D} ${dtools_D}dtools/all.d
 
     #3 try out examples
     rdmd -version=test1 ${dtools_D}dtools/examples/test1
