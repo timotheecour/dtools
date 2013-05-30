@@ -62,7 +62,7 @@ string escapeRegex(string a){
 	import std.string;
 	enum transTable = (){
 		string[char]b;
-		auto a=`[]{}()*+?|^$\`;
+		auto a=`[]{}()*+?|^$\.`;
 		foreach(ai;a)
 			b[ai]=`\`~ai;
 		return b;
@@ -77,9 +77,9 @@ string escapeRegexReplace(string a){
 
 unittest{
 	import std.regex;
-	string a=`asdf(def[ghi]+*|)][}{)(*+?|^$\/`;
+	string a=`asdf(def[ghi]+*|)][}{)(*+?|^$\/.`;
 	assert(match(a,regex(escapeRegex(a))).hit==a);
-	string b=`$aa\/$ $$#@$\0$1#$@%#@%=+_)][}{)(*+?|^$\/`;
+	string b=`$aa\/$ $$#@$\0$1#$@%#@%=+_)][}{)(*+?|^$\/.`;
 	auto s=replace(a,regex(escapeRegex(a)),escapeRegexReplace(b));
 	assert(s==b);
 }
