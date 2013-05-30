@@ -31,6 +31,8 @@ Features:
 
 *  mixin insight on a file (experimental)
 
+*  escapeRegex to have literal matching in regexes.
+
 *  (much more to come later)
 
 
@@ -52,8 +54,8 @@ Usage:
     export dtools_D=`pwd`/
     
     #2 run unittests
-    rdmd --main -unittest -I${dtools_D} ${dtools_D}dtools/all.d
-
+    rdmd --main -unittest -J. -I${dtools_D} ${dtools_D}dtools/all.d
+    
     #3 try out examples
     rdmd -version=test1 ${dtools_D}dtools/examples/test1
 

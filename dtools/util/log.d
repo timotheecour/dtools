@@ -229,11 +229,11 @@ auto findMatchingBracket(char left='(', char sep=',')(string a){//TODO:is char o
 
 unittest{
 	import std.stdio:writeln;
-
 	assert(findMatchingBracket("asdf(sf)ff")[0]=="(sf)");
 	assert(findMatchingBracket("asdf((s(f)))ff")[0]=="((s(f)))");
-	assert(findMatchingBracket("asdf(x,y+(3*3)-1,2)f")[1]==["x", "y+(3*3)-1", "2"]);
+	assert(findMatchingBracket("asdf(x,y+(3*3)-1,2)f")[1].map!`a.name`.array==["x", "y+(3*3)-1", "2"]);
 }
+version(none)//TEMP
 void main(){
 	int x;
 	auto fun(T)(T a){
