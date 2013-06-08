@@ -70,6 +70,7 @@ version(none){
 	}
 }
 
+version(none)//to disable printing
 unittest{//TODO:improve unittest
 	import std.stdio;
 	writeln(__MODULE__,":begin");

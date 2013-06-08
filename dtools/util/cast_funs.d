@@ -26,9 +26,20 @@ auto Cast(alias T,S)(auto ref S a){
 		static assert(0);
 }
 
+version(unittest){
+	import std.stdio;
+	int foo(int x){
+		return x;	
+	}
+}
 unittest{
+	double c;
+//	auto b1=cast(int)c.foo;//means cast(int)(c.foo), so would be CT error
+	auto b2=(cast(int)c).foo;//verbose syntax: 2 nested parenthesis
+	auto b3=c.Cast!int.foo;//simpler syntax
+
 	int a=1;
-	auto b=(a+a).Cast!double;
+	auto b=(a+a).Cast!double;	
 	static assert(is(typeof(b)==double));
 	static assert(is(typeof(a.Cast!Immutable)==immutable(int)));
 	static assert(is(typeof(a.Cast!Const)==const(int)));
