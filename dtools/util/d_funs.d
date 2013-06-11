@@ -1,3 +1,6 @@
+/+
+2013_06_07_19_51_01
++/
 module dtools.util.d_funs;
 
 import std.file;

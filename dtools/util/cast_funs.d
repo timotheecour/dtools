@@ -1,3 +1,12 @@
+/+
+LINKS:
+EMAIL:The cast(signed), cast(unsigned) feature proposal
+
+TODO:
+shared const, inout shared, etc.
+a.Cast!"shared const" or a.Cast!SharedConst
++/
+
 module dtools.util.cast_funs;
 
 template Typeof(alias a){
@@ -27,7 +36,6 @@ auto Cast(alias T,S)(auto ref S a){
 }
 
 version(unittest){
-	import std.stdio;
 	int foo(int x){
 		return x;	
 	}
@@ -47,5 +55,9 @@ unittest{
 	static assert(is(typeof(a.Cast!Unsigned)==uint));
 	static assert(is(typeof(a.Cast!Const)==const(int)));
 	static assert(is(typeof((a+a).Cast!Unsigned)==uint));
+
+	auto b5=cast(shared const)a;
+	import std.stdio;
+	pragma(msg,typeof(b2));
 }
 
