@@ -131,7 +131,7 @@ unittest{
 		auto a2=variantTuple(3,[1]);
 		a1[1]=a2;
 		a1~="foo2";
-		assert(d.text==`[[foo, 1.1], [3, [1]], foo2]`);
+		assert(a1.text==`[[foo, 1.1], [3, [1]], foo2]`);
 	}
 
 }
