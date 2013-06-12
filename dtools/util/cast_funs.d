@@ -56,8 +56,11 @@ unittest{
 	static assert(is(typeof(a.Cast!Const)==const(int)));
 	static assert(is(typeof((a+a).Cast!Unsigned)==uint));
 
-	auto b5=cast(shared const)a;
-	import std.stdio;
-	pragma(msg,typeof(b2));
+	version(none){
+		//TODO
+		auto b5=cast(shared const)a;
+		import std.stdio;
+		pragma(msg,typeof(b2));
+	}
 }
 
