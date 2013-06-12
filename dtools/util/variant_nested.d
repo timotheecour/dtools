@@ -93,6 +93,13 @@ struct Variant2{
 		temp[index] = Variant2(Variant(foo(temp[index],val)));
 	}
 
+	void opOpAssign(string op:"~",T)(T a){//NOTE: because of weak variant typing, can't distinguish bw appending scalar vs vector
+//		alias V=GetType!T;
+		auto temp=_a.get!(Variant2[]);
+		temp~=Variant2(a);
+		_a=temp;//TODO:more efficient?
+	}
+
 	//TODO:support a.foo for a["foo"]?
 	//TODO:opDispatchOpAssign?
 	//	auto opDispatch(string s)(){ //causes issues with __ctor?
@@ -115,5 +122,16 @@ unittest{
 	d["a"]=variantTuple(0.0,'e');
 	d["a"]=10;
 	d["a"]+=2; //read-modify-write works, unlike std.variant : 'Due to limitations in current language, read-modify-write operations op= will not work properly'
-	assert(d.text==`["a":12, "b":foo, "c":[other1, 2.2, three]]`);
+	assert(d.text==`["a":12, "b":foo, "c":[other1, 2.2, three]]`); //TODO:ideally should print as: {a:12, b:foo, b:{"other1", 2.2, "three"}, or same, w types shown
+
+	{
+		Variant2 a1=0;
+		a1=variantTuple(1,"a");
+		a1[0]=variantTuple("foo",1.1);
+		auto a2=variantTuple(3,[1]);
+		a1[1]=a2;
+		a1~="foo2";
+		assert(d.text==`[[foo, 1.1], [3, [1]], foo2]`);
+	}
+
 }
