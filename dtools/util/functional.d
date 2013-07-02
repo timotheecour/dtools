@@ -28,6 +28,7 @@ later simplified to: named!foo.b(3).a(5)();
 
  +/
 
+//2013_06_28_17_06_13
 module dtools.util.functional;
 
 auto callNamed(alias fun,string s,T...)(T args)
@@ -127,3 +128,5 @@ unittest
 	auto ret2=named!fun.z(3).x(4)();
 	assert(ret2==ret);
 }
+
+

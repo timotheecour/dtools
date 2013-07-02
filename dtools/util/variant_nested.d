@@ -113,6 +113,7 @@ struct Variant2{
 }
 
 unittest{
+	struct B{float z=1.5; double[2] mu;}
 	auto d=variantTupleNamed("a",1,"b","foo","c",variantTuple(1,2.2,"three"));
 	d["a"]=2;
 	auto v=d["c"][0].get!int;//can coerce to int
@@ -131,7 +132,8 @@ unittest{
 		auto a2=variantTuple(3,[1]);
 		a1[1]=a2;
 		a1~="foo2";
-		assert(a1.text==`[[foo, 1.1], [3, [1]], foo2]`);
+		a1~=B.init;
+		assert(a1.text==`[[foo, 1.1], [3, [1]], foo2, B(1.5, [nan, nan])]`);
 	}
 
 }
