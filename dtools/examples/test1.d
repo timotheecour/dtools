@@ -10,7 +10,6 @@ void main(){
 	test;
 }
 
-
 version(test1){
 	import dtools.util.log;
 
@@ -40,7 +39,7 @@ version(test1){
 		}
 	}
 }
-
+else
 version(test2){
 
 	import std.array;
@@ -58,6 +57,9 @@ version(test2){
 	}
 
 }
-
+else
+	void test(){
+		assert(0);
+	}
 
 

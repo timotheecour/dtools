@@ -1,3 +1,4 @@
+//@NOCOMPILE
 /+
  rdmd dtools/examples/test3.d
  rdmd -version=is_main dtools/util/d_funs dtools/examples/test2.d
