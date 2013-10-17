@@ -12,4 +12,3 @@ public import dtools.util.cast_funs;
 public import dtools.util.regex_funs;
 public import dtools.util.variant_nested;
 
-public import dtools.overrides.format;

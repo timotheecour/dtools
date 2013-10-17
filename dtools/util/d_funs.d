@@ -46,7 +46,7 @@ string instrumentMixins(string text){
 
 //	auto file=tmpFileManaged(".d");
 	std.file.write(file,text);
-//	return systemLogCaptureThrow("rdmd --build-only -c "~file);
+//	return systemCaptureThrow("rdmd --build-only -c "~file).output;
 	int ret = system("rdmd --build-only -c 2>&1 "~file);
 	import std.file;
 

@@ -7,6 +7,23 @@ module dtools.util.regex_funs;
  PUSH to phobos
  +/
 
+
+//TODO:simplify/merge/rename
+static string regex_hexdigit=`[a-fA-F0-9]`;//MOVE ; MERGE with some stuff from iterm_funs
+static string file_regex=`[\w/\.]+`;//MOVE ; MERGE with some stuff from iterm_funs
+static string file_home_regex=`(~?[\w\./\-]+)`;//MOVE ; MERGE with some stuff from iterm_funs
+
+//private enum pattern_file=`~?[\w\./\-\$]+`;
+//https://www.google.com/
+//private enum pattern_file=`(~|\w+\://)?[\w\./\-\$]+`;//http://a/~b/.html didn't work => TODO:unittest
+enum pattern_file=`(\w+\://|~)?[~\w\./\-\$]+`;
+static string pattern_file2=`^(?P<file>`~pattern_file~`)`;
+  //string pattern_line_column=`\:(?P<lineone>\d+)`;
+static string pattern_line_column=`\:(?P<lineone>\d+)(\:(?P<lineoneb>\d+))?`;
+
+
+
+
 string escapeRegex(string preserved=null)(string a){
 	import std.string;
 	enum transTable = (){
@@ -33,7 +50,7 @@ string escapeRegex(string preserved=null)(string a){
 }
 string escapeRegexReplace(string a){
 	import std.string;
-	enum transTable = ['$' : `$$`]; 
+	enum transTable = ['$' : `$$`]; //TODO:can we do \$?
 	return translate(a, transTable);
 }
 
