@@ -10,8 +10,8 @@ module dtools.util.regex_funs;
 
 //TODO:simplify/merge/rename
 static string regex_hexdigit=`[a-fA-F0-9]`;//MOVE ; MERGE with some stuff from iterm_funs
-static string file_regex=`[\w/\.]+`;//MOVE ; MERGE with some stuff from iterm_funs
-static string file_home_regex=`(~?[\w\./\-]+)`;//MOVE ; MERGE with some stuff from iterm_funs
+enum file_regex=`[\w\./\-]+`;//MOVE ; MERGE with some stuff from iterm_funs
+static string file_home_regex=`(~?`~file_regex~`)`;//MOVE ; MERGE with some stuff from iterm_funs
 
 //private enum pattern_file=`~?[\w\./\-\$]+`;
 //https://www.google.com/
