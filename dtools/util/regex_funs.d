@@ -21,9 +21,6 @@ static string pattern_file2=`^(?P<file>`~pattern_file~`)`;
   //string pattern_line_column=`\:(?P<lineone>\d+)`;
 static string pattern_line_column=`\:(?P<lineone>\d+)(\:(?P<lineoneb>\d+))?`;
 
-
-
-
 string escapeRegex(string preserved=null)(string a){
 	import std.string;
 	enum transTable = (){
