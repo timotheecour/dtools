@@ -17,7 +17,7 @@ static string file_home_regex=`(~?`~file_regex~`)`;//MOVE ; MERGE with some stuf
 //https://www.google.com/
 //private enum pattern_file=`(~|\w+\://)?[\w\./\-\$]+`;//http://a/~b/.html didn't work => TODO:unittest
 enum pattern_file=`(\w+\://|~)?[~\w\./\-\$]+`;
-static string pattern_file2=`^(?P<file>`~pattern_file~`)`;
+string pattern_file2(string a){return `^(?P<file>`~a~`)`;}
   //string pattern_line_column=`\:(?P<lineone>\d+)`;
 static string pattern_line_column=`\:(?P<lineone>\d+)(\:(?P<lineoneb>\d+))?`;
 
