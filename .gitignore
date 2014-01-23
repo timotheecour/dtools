@@ -1,2 +1,5 @@
 #ignore build output
 /build/
+
+#TEMP:BUG_2014_01_23_01_51_09
+*.a
