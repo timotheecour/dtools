@@ -5,6 +5,9 @@ module dtools.util.regex_funs;
 
  IMPROVE
  PUSH to phobos
+
+ //TEMP:1
+ 
  +/
 
 
@@ -20,6 +23,7 @@ enum pattern_file=`(\w+\://|~)?[~\w\./\-\$]+`;
 string pattern_file2(string a){return `^(?P<file>`~a~`)`;}
   //string pattern_line_column=`\:(?P<lineone>\d+)`;
 static string pattern_line_column=`\:(?P<lineone>\d+)(\:(?P<lineoneb>\d+))?`;
+
 
 string escapeRegex(string preserved=null)(string a){
 	import std.string;
