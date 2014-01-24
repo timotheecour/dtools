@@ -5,9 +5,6 @@ module dtools.util.regex_funs;
 
  IMPROVE
  PUSH to phobos
-
- //TEMP:9
-
  +/
 
 
