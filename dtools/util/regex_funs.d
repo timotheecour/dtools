@@ -16,7 +16,10 @@ static string file_home_regex=`(~?`~file_regex~`|~)`;//MOVE ; MERGE with some st
 //private enum pattern_file=`~?[\w\./\-\$]+`;
 //https://www.google.com/
 //private enum pattern_file=`(~|\w+\://)?[\w\./\-\$]+`;//http://a/~b/.html didn't work => TODO:unittest
-enum pattern_file=`(\w+\://|~)?[~\w\./\-\$]+`;
+/+
+`(\w+\://|~)?[~\w\./\-\$]+`
++/
+enum pattern_file=`(\w+\://|~)?[~\w\./\-\$@]+`;
 string pattern_file2(string a){return `^(?P<file>`~a~`)`;}
   //string pattern_line_column=`\:(?P<lineone>\d+)`;
 static string pattern_line_column=`\:(?P<lineone>\d+)(\:(?P<lineoneb>\d+))?`;
@@ -27,6 +30,7 @@ string escapeRegex(string preserved=null)(string a){
 	enum transTable = (){
 		string[char]b;
 		enum a=`[]{}()*+?|^$\.`;
+		//TODO:std.regex.Escapables
 		if(preserved){
 			import std.algorithm;
 			import std.array;
