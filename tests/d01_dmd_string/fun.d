@@ -1,23 +1,12 @@
 /+
 https://github.com/dlang/dmd/pull/7870#discussion_r168174068
+proposal:
+use Dstring instead of char* in dmd compiler sources for extern(C++) apis.
+eg: `extern (C++) int fp(void* param, const(char)* str)`
 
-better yet: for all the apis used by ldc, gdc:
-
-use a compiler dependent (via eg version(LDC)) type Dstring, which for dmd is alias to char[] and for ldc, dmd is alias to extern(C++) struct with size and char* head, along with conversions functions.
-that way, dmd code stays clean, safe and keeps length aroud
-
-
-better yet: for all the apis used by ldc, gdc
-use a compiler dependent (via eg version(LDC)) type Dstring, which for dmd is alias to char[] and for ldc, dmd is alias to extern(C++) struct with size and char* head, along with conversions functions.
-that way, dmd code stays clean, safe and keeps length aroud
-
-
-// current
-extern (C++) int fp(void* param, const(char)* str){
-  PushAttributes* p = cast(PushAttributes*)param;
-  p.mods.push(new StringExp(Loc.initial, cast(char*)str));
-  return 0;
-}
+advantages:
+* no loss of length informtion
+* easier to convert back and forth from char[] to char*
 +/
 
 import std.conv:to;
@@ -38,13 +27,12 @@ struct Darray(T){
   }
 
   /+
-  //auto input2=input.to!(char[]); // checkme
-  TODO:DMD:BUG? why not picked up by to!(char[]) ?
-  +/
-  version(none)
+  TODO:DMD:BUG?
+  why not picked up by input.to!(char[]) ?
   extern(D) T2 opCast(T2)() if(is(T2==T[])) {
     return ptr[0..length];
   }
+  +/
 }
 
 version (dmd_native_string){
