@@ -4,9 +4,10 @@ dependency "dmd" version="~master"
 +/
 
 /+
-DMD=$dmd_current_X dub --single main.d
 $dmd_current_X --version
 DMD64 D Compiler v2.078.2-699-g6a2db254e-dirty
+
+DMD=$dmd_current_X dub --single main.d
 
 file1.d(1): Error: Invalid trailing code unit
 file1.d(1): Error: declaration expected, not `#`
