@@ -42,14 +42,7 @@ unittest {
   assert(equal(temp4, [0, 0, 1, 0, 1, 2, 0, 1, 2, 3]));
   // no simple efficient equivalent with map/filter/joiner since joiner will allocate in each group
 
-  //BUG:D20160321T034620
-  // TODO: why do i get: $code/util/emit.d(38,14): Error: cannot resolve type for temp.array(Range)(Range r) if (isIterable!Range && !isNarrowString!Range && !isInfinite!Range)
-  //static assert(is(typeof(temp.array)));
-  alias Range = typeof(temp);
-  static assert(isInputRange!Range);
-  static assert(isIterable!Range && !isNarrowString!Range && !isInfinite!Range);
-
-  static assert(is(typeof(temp.array2)));
+  static assert(is(typeof(temp.array)));
 }
 
 private struct EmitResult(alias emitter, Range, T) {
@@ -60,9 +53,7 @@ private struct EmitResult(alias emitter, Range, T) {
     R _input;
     import std.array;
 
-    //alias Q=Appender!(E[]);
     alias Q = T[];
-    // TODO:assumeUnique needed?
     Q q;
     size_t index;
   }
@@ -93,8 +84,8 @@ private struct EmitResult(alias emitter, Range, T) {
     index++;
     if (index == q.length) {
       index = 0;
-      //TODO:will it clear? we don't want to (to reuse buffer)
       q.length = 0;
+      q.assumeSafeAppend;
       popFrontAux;
     }
   }
@@ -105,7 +96,6 @@ private struct EmitResult(alias emitter, Range, T) {
 
   static if (isForwardRange!R) {
     @property auto save() {
-      //TODO:is .dup needed?
       return typeof(this)(_input.save, q.dup, index);
     }
   }
@@ -125,42 +115,3 @@ private:
   }
 }
 
-// NOTE: copied from std.array.array because of D20160321T034620
-ForeachType!Range[] array2(Range)(Range r) if (isIterable!Range && !isNarrowString!Range && !isInfinite!Range) {
-  if (__ctfe) {
-    // Compile-time version to avoid memcpy calls.
-    // Also used to infer attributes of array().
-    typeof(return) result;
-    foreach (e; r)
-      result ~= e;
-    return result;
-  }
-
-  alias E = ForeachType!Range;
-  static if (hasLength!Range) {
-    auto length = r.length;
-    if (length == 0)
-      return null;
-
-    import std.conv : emplaceRef;
-
-    auto result = (() @trusted => uninitializedArray!(Unqual!E[])(length))();
-
-    // Every element of the uninitialized array must be initialized
-    size_t i;
-    foreach (e; r) {
-      emplaceRef!E(result[i], e);
-      ++i;
-    }
-    return (() @trusted => cast(E[]) result)();
-  }
-  else {
-    import std.array : appender;
-
-    auto a = appender!(E[])();
-    foreach (e; r) {
-      a.put(e);
-    }
-    return a.data;
-  }
-}
