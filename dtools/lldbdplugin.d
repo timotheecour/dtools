@@ -1,4 +1,33 @@
-module lldbdplugin;
+/+
+Usage
+
+build lldb with https://github.com/llvm-mirror/lldb/pull/3
+## build
+```
+git clone https://github.com/llvm-mirror/llvm.git
+cd llvm/tools
+git clone https://github.com/llvm-mirror/lldb
+## also, patch in https://github.com/llvm-mirror/lldb/pull/3
+git clone https://github.com/llvm-mirror/clang
+cd ..
+mkdir build
+cd build
+cmake .. -G Ninja
+ninja all
+```
+
+## run
+```
+DYLD_LIBRARY_PATH=$path_to_lldbplugin/ $path_to/lldb -- $some_program
+b full.qualified.name
+#understands D fully qualified names (note: no templates yet it seems)
+r
+bt
+# shows backtrace with demangled D symbols
+```
+
++/
+module dtools.lldbdplugin;
 
 import core.stdc.stdio;
 import core.runtime;
