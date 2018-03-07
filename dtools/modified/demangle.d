@@ -10,7 +10,8 @@
  * Source:    $(DRUNTIMESRC core/_demangle.d)
  */
 
-module core.demangle;
+// FROM: module core.demangle;
+module dtools.modified.demangle;
 
 version (OSX)
     version = Darwin;
@@ -23,6 +24,8 @@ else version (WatchOS)
 
 debug(trace) import core.stdc.stdio : printf;
 debug(info) import core.stdc.stdio : printf;
+
+import dtools.alloc : getDst;
 
 private struct NoHooks
 {
@@ -223,7 +226,7 @@ pure @safe:
         if( val.length && !mute )
         {
             if( !dst.length )
-                dst.length = minBufSize;
+                dst = getDst!char(minBufSize);
             assert( !contains( dst[0 .. len], val ) );
             debug(info) printf( "appending (%.*s)\n", cast(int) val.length, val.ptr );
 
@@ -1972,7 +1975,7 @@ pure @safe:
                 auto b = 2 * dst.length;
                 auto newsz = a < b ? b : a;
                 debug(info) printf( "growing dst to %lu bytes\n", newsz );
-                dst.length = newsz;
+                dst = getDst!char(newsz);
                 pos = len = brp = 0;
                 continue;
             }
@@ -2650,6 +2653,7 @@ extern (C) private
 {
     pure @trusted @nogc nothrow pragma(mangle, "fakePureReprintReal") void pureReprintReal(char[] nptr);
 
+    version(none)
     void fakePureReprintReal(char[] nptr)
     {
         import core.stdc.stdlib : strtold;
