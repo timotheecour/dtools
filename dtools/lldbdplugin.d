@@ -2,8 +2,8 @@
 Usage
 
 build lldb with https://github.com/llvm-mirror/lldb/pull/3
-## build
 ```
+## build lldb
 git clone https://github.com/llvm-mirror/llvm.git
 cd llvm/tools
 git clone https://github.com/llvm-mirror/lldb
@@ -14,6 +14,10 @@ mkdir build
 cd build
 cmake .. -G Ninja
 ninja all
+
+## build lldbdplugin
+#dtools_D=path to dtools repo
+ldmd2 -of=liblldbdplugin.dylib -shared -g -I$dtools_D $dtools_D/dtools/modified/demangle.d $dtools_D/dtools/lldbdplugin.d
 ```
 
 ## run
