@@ -1,7 +1,7 @@
 /+
 Usage
 
-build lldb with https://github.com/llvm-mirror/lldb/pull/3
+build lldb with https://reviews.llvm.org/D44321 (formerly https://github.com/llvm-mirror/lldb/pull/3)
 ```
 ## build lldb
 git clone https://github.com/llvm-mirror/llvm.git
