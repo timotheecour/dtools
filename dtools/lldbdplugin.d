@@ -22,7 +22,10 @@ ldmd2 -of=liblldbdplugin.dylib -shared -g -I$dtools_D $dtools_D/dtools/modified/
 
 ## run
 ```
-DYLD_LIBRARY_PATH=$path_to_lldbplugin/ $path_to/lldb -- $some_program
+## add this to .lldbinit:
+settings set plugin.language.D.pluginfile "path_to/liblldbdplugin.dylib"
+
+$path_to/lldb -- $some_program
 b full.qualified.name
 #understands D fully qualified names (note: no templates yet it seems)
 r
