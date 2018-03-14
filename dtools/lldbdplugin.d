@@ -45,13 +45,17 @@ import core.thread;
 import core.memory;
 import std.concurrency;
 
-extern(C) 
-void d_initialize(){
-  auto ok = Runtime.initialize;
-  assert(ok);
+extern(C) {
+
+bool d_initialize(){
+  return Runtime.initialize;
 }
 
-extern(C) char* lldbd_demangle(size_t length, const(char)* mangled){
+bool d_terminate(){
+  return Runtime.terminate;
+}
+
+char* lldbd_demangle(size_t length, const(char)* mangled){
   import dtools.alloc;
   auto mangled2=mangled[0..length];
 
@@ -63,4 +67,6 @@ extern(C) char* lldbd_demangle(size_t length, const(char)* mangled){
   import dtools.modified.demangle:demangle;
   auto ret = demangle(mangled2);
   return ret.malloc_cpy(true).ptr;
+}
+
 }
