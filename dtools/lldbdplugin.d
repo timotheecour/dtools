@@ -17,7 +17,8 @@ ninja all
 
 ## build lldbdplugin
 #dtools_D=path to dtools repo
-ldmd2 -of=liblldbdplugin.dylib -shared -g -I$dtools_D $dtools_D/dtools/modified/demangle.d $dtools_D/dtools/lldbdplugin.d
+#NOTE: -link-defaultlib-shared=false was added in ldc 1.8.0
+ldmd2 -of=liblldbdplugin.dylib -shared -link-defaultlib-shared=false -g -I$dtools_D $dtools_D/dtools/modified/demangle.d $dtools_D/dtools/lldbdplugin.d
 ```
 
 ## run
